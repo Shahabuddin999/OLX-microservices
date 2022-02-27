@@ -1,0 +1,46 @@
+management:
+  endpoints:
+   web:
+     exposure:
+       include: "*"
+server:
+  port: 8080
+spring:
+  zipkin:
+    base-url: http://localhost:9411
+  main:
+    allow-circular-references: true
+  config:
+    import: configserver:http://localhost:8888
+    
+# Mongodb 
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: mydb
+      
+#  datasource:
+#    password: postgre
+#    url: jdbc:postgresql://localhost/olxuser
+#    username: postgres
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#    show-sql: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+  application:
+    name: login-service   
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: true
