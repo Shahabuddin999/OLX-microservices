@@ -1,0 +1,39 @@
+management:
+  endpoints:
+   web:
+     exposure:
+       include: "*"
+server:
+  port: 8081
+spring:
+  zipkin:
+    base-url: http://localhost:9411
+  application:
+    name: master-service
+  config:
+    import: configserver:http://localhost:8888
+#  datasource:
+#    password: postgre
+#    url: jdbc:postgresql://localhost/olxmasterdata
+#    username: postgres
+#  application:
+#    name: master-service
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#    show-sql: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+      
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: true
