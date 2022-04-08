@@ -89,10 +89,10 @@ public class UserServiceImpl implements UserService{
 			UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
 			if(jwtUtil.validateToken(authTocken, userDetails) == true) {
 				LocalDateTime currentDateTime = LocalDateTime.now();
-				BlackListedToken blackListedToken = userLogoutMongoRepository.findByToken(authTocken);
-				if (blackListedToken != null && (currentDateTime.equals(blackListedToken.getExpirydate()) || currentDateTime.isAfter(blackListedToken.getExpirydate()))) {
-					throw new InvalidAuthTokenException("You have intered invalid Auth Tocken : " + authTocken);
-				}
+//				BlackListedToken blackListedToken = userLogoutMongoRepository.findByToken(authTocken);
+//				if (blackListedToken != null && (currentDateTime.equals(blackListedToken.getExpirydate()) || currentDateTime.isAfter(blackListedToken.getExpirydate()))) {
+//					throw new InvalidAuthTokenException("You have intered invalid Auth Tocken : " + authTocken);
+//				}
 			} }catch(Exception e) {
 				throw new InvalidAuthTokenException("You have intered invalid Auth Tocken");
 			}

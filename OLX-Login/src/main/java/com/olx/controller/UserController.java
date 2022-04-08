@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -47,8 +48,9 @@ public class UserController {
 		@ApiOperation(value="Authenticate User over here", notes = "Authenticate User over here and return response to the client") // This @ApiOperation and @ApiParam is belonging to swagger
 		public ResponseEntity<String> authenticate(@ApiParam(value="Need to send User DTO to validate", name="userAuthentication", required = true) @RequestBody UserDto userDto) throws Exception{
 			try {
-				// Calling manually because not hitting from Login page provided by spring framework
-				authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDto.getUsername(), userDto.getPassword()));
+				// Calling manually because not hitting from Login page provided by spring framework. here it is calling loadUserByUsername(String)
+				Authentication auth =  authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDto.getUsername(), userDto.getPassword()));
+				System.out.println("Auth : " + auth);
 			}catch(Exception e) {
 				throw new InvalidUserNameOrPasswordException("You have intered Invalid UserName or Password");
 			}
