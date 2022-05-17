@@ -1,0 +1,4 @@
+1) Soring 4.13
+2) java 8
+3) Maven 3.8.2
+4) Git
