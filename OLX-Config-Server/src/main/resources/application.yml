@@ -9,6 +9,6 @@ spring:
         git:
           uri: https://github.com/Shahabuddin999/OLX-Config
           default-label: main
-          username: Shahabuddin999
-          password: alld@alld12
+          username: XXXXXXXXX
+          password: XXXXXXXXX
           clone-on-start: true
